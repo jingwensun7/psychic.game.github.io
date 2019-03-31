@@ -16,9 +16,10 @@ function userGuess() {
 }
 
 function game() {
+	document.querySelector("#guesses").innerHTML = "Guesses Left: 0";
+	document.querySelector("#user").innerHTML = "Your Guesses so far: 9";
 	guesses = 9;
 	user = [];
-	var computerGuesses = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 }
 
 document.onkeyup = function(event) {
@@ -28,13 +29,17 @@ document.onkeyup = function(event) {
 	countGuesses();
 	userGuess();
 
+	var computerGuesses = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
 	if (userGuesses === computerGuesses) {
 		wins++;
+		alert("You won!");
 		document.querySelector("#wins").innerHTML = "Wins: " + wins;
 		game();
 	}
 	else if (guesses === 0) {
 		losses++;
+		alert("You lose!");
 		document.querySelector("#losses").innerHTML = "Loses: " + losses;
 		game();
 	}
